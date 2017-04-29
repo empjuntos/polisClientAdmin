@@ -14,7 +14,7 @@ var runSequence = require('run-sequence');
 
 const staticFilesPrefix = "cached";
 const baseDistRoot = "dist";
-var destRootBase = "devel";
+var destRootBase = "./";
 var destRootRest = '/';  // in dist, will be the cachebuster path prefix
 var versionString = 'VERSION_ERROR';
 function destRoot() {
