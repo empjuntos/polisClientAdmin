@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  polis-client-admin:
+    container_name: polis-client-admin
+    build: .
+    volumes:
+      - .:/polisClientAdmin
+    ports:
+      - 5002:5002
+    external_links:
+      - polisserver_default
+    networks:
+      - default
+      - polisserver_default
+
+networks:
+  polisserver_default:
+    external: true
