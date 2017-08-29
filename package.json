@@ -42,6 +42,7 @@
     "gulp-s3": "git://github.com/mbjorkegren/gulp-s3.git#847e2b372204b4ceeccb0e9b567f28ff00e7fa1d",
     "jest": "^17.0.0",
     "json-loader": "^0.5.1",
+    "prop-types": "^15.5.10",
     "react-test-renderer": "^15.3.2",
     "react-transform-catch-errors": "1.0.0",
     "react-transform-hmr": "1.0.1",
