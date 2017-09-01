@@ -1,0 +1,25 @@
+---
+image: docker:17.04-git
+services:
+- docker:17.04-dind
+stages:
+- build
+- deploy
+
+variables:
+  CONTAINER_TEST_IMAGE: registry.gitlab.com/empurrandojuntos/polisclientadmin:$CI_BUILD_REF_NAME
+  CONTAINER_RELEASE_IMAGE: registry.gitlab.com/empurrandojuntos/polisclientadmin:latest
+
+before_script:
+  - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
+
+build to production:
+  stage: build
+  script:
+    - docker build -t $CONTAINER_TEST_IMAGE .
+    - docker push $CONTAINER_TEST_IMAGE
+  only:
+    - /master/
+  environment: production
+  tags:
+    - docker
