@@ -4,22 +4,31 @@ services:
 - docker:17.04-dind
 stages:
 - build
-- deploy
 
 variables:
-  CONTAINER_TEST_IMAGE: registry.gitlab.com/empurrandojuntos/polisclientadmin:$CI_BUILD_REF_NAME
-  CONTAINER_RELEASE_IMAGE: registry.gitlab.com/empurrandojuntos/polisclientadmin:latest
+  RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
 
-before_script:
-  - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
-
-build to production:
+build admin:
   stage: build
   script:
-    - docker build -t $CONTAINER_TEST_IMAGE .
-    - docker push $CONTAINER_TEST_IMAGE
+    - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
+    - docker build -t $RELEASE_IMAGE .
+    - docker tag $RELEASE_IMAGE "$CI_REGISTRY_IMAGE:latest"
+    - docker push $RELEASE_IMAGE
+    - docker push "$CI_REGISTRY_IMAGE:latest"
   only:
-    - /master/
+    - /master|develop/
+  tags:
+    - docker
+
+
+deploy to production:
+  stage: deploy
+  image: cdrx/rancher-gitlab-deploy
+  script:
+    - upgrade --environment Production --stack polis-dev --service polis-admin --new-image $RELEASE_IMAGE --no-finish-upgrade
+  only:
+    - /master|develop/
   environment: production
   tags:
     - docker
