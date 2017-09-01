@@ -6,5 +6,7 @@ EXPOSE 5002
 ADD . /polisClientAdmin
 WORKDIR /polisClientAdmin
 
-RUN npm install
+RUN npm install \
+    && npm run build:webpack
+
 CMD npm start
