@@ -4,6 +4,7 @@ services:
 - docker:17.04-dind
 stages:
 - build
+- deploy
 
 variables:
   RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
