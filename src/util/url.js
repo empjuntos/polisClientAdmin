@@ -10,6 +10,7 @@ var localhost5002 = "http://localhost:5002/";
 
 let httpsWhitelist = [
   /xip.io$/,
+  /brasilqueopovoquer.org.br$/,
 ];
 
 var urlPrefix = prod;
