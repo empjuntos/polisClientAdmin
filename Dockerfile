@@ -9,4 +9,4 @@ WORKDIR /polisClientAdmin
 RUN npm install \
     && npm run build:webpack
 
-CMD node dev-server.js
+CMD ./start.sh
