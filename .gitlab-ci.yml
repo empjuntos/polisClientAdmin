@@ -1,7 +1,7 @@
 ---
-image: docker:17.04-git
+image: docker:latest
 services:
-- docker:17.04-dind
+- docker:dind
 stages:
 - build
 - deploy
@@ -22,14 +22,24 @@ build admin:
   tags:
     - docker
 
-
 deploy to production:
+  stage: deploy
+  image: cdrx/rancher-gitlab-deploy
+  script:
+    - upgrade --environment Production --stack polis-prod --service polis-admin --new-image $RELEASE_IMAGE --no-finish-upgrade
+  only:
+    - /master/
+  environment: production
+  tags:
+    - docker
+
+deploy to development:
   stage: deploy
   image: cdrx/rancher-gitlab-deploy
   script:
     - upgrade --environment Production --stack polis-dev --service polis-admin --new-image $RELEASE_IMAGE --no-finish-upgrade
   only:
-    - /master|develop/
-  environment: production
+    - /develop/
+  environment: development
   tags:
     - docker
