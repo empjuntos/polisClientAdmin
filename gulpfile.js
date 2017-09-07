@@ -12,7 +12,7 @@ var fs = require('fs');
 var rimraf = require("rimraf");
 var runSequence = require('run-sequence');
 
-const staticFilesPrefix = "cached";
+const staticFilesPrefix = "admin/static";
 const baseDistRoot = "dist";
 var destRootBase = "./";
 var destRootRest = '/';  // in dist, will be the cachebuster path prefix
