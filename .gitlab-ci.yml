@@ -31,7 +31,7 @@ deploy to production:
   stage: deploy
   image: cdrx/rancher-gitlab-deploy
   script:
-    - upgrade --environment Production --stack polis-prod --service polis-admin --new-image $RELEASE_IMAGE --no-finish-upgrade --debug
+    - upgrade --environment Production --stack polis-prod --service polis-client-admin --new-image $RELEASE_IMAGE --no-finish-upgrade --debug
   only:
     - /master/
   environment: production
@@ -42,7 +42,7 @@ deploy to development:
   stage: deploy
   image: cdrx/rancher-gitlab-deploy
   script:
-    - upgrade --environment Production --stack polis-dev --service polis-admin --new-image $RELEASE_IMAGE --no-finish-upgrade --debug
+    - upgrade --environment Production --stack polis-dev --service polis-client-admin --new-image $RELEASE_IMAGE --no-finish-upgrade --debug
   only:
     - /develop/
   environment: development
