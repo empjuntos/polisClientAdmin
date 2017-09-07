@@ -146,7 +146,7 @@ gulp.task("configureForProduction", function(callback) {
   });
 });
 
-
+// FIXME remove this task, should be done in browser
 gulp.task("scripts", function() {
   var files = ["dist/admin_bundle.js"];
   var s = gulp.src(files);
@@ -169,7 +169,6 @@ gulp.task('common', [
       'embed',
       'embedPreprod',
       '404',
-      'scripts',
       callback);
 });
 
