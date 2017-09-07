@@ -146,18 +146,17 @@ gulp.task("configureForProduction", function(callback) {
   });
 });
 
-// FIXME remove this task, should be done in browser
 gulp.task("scripts", function() {
   var files = ["dist/admin_bundle.js"];
   var s = gulp.src(files);
-  s = s
-    .pipe(gzip())
-    .pipe(rename(function (path) {
-      // remove .gz extension
-      var ext = path.extname;
-      console.log("foo", path);
-      path.extname = ext.substr(0, ext.length- ".gz".length);
-    }));
+  // s = s
+  //   .pipe(gzip())
+  //   .pipe(rename(function (path) {
+  //     // remove .gz extension
+  //     var ext = path.extname;
+  //     console.log("foo", path);
+  //     path.extname = ext.substr(0, ext.length- ".gz".length);
+  //   }));
   return s.pipe(gulp.dest(destRoot() + "/js"));
 });
 
@@ -169,6 +168,7 @@ gulp.task('common', [
       'embed',
       'embedPreprod',
       '404',
+      'scripts',
       callback);
 });
 
