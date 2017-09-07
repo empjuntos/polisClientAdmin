@@ -13,7 +13,13 @@ build admin:
   stage: build
   script:
     - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
-    - docker build -t $RELEASE_IMAGE .
+    - docker run -u node --rm --workdir=/app -v $PWD:/app node npm install
+    - docker run -u node --rm --workdir=/app -v $PWD:/app node ./node_modules/bower/bin/bower install
+    - docker run -u node --rm --workdir=/app -e NODE_ENV=production -v $PWD:/app node ./node_modules/gulp-cli/bin/gulp.js build_production
+    - docker create --name polisclientadmin nginx
+    - docker cp $PWD/config/nginx.conf polisclientadmin:/etc/nginx/conf.d/default.conf
+    - docker cp $PWD/dist/. polisclientadmin:/usr/share/nginx/html
+    - docker commit polisclientadmin $RELEASE_IMAGE
     - docker tag $RELEASE_IMAGE "$CI_REGISTRY_IMAGE:latest"
     - docker push $RELEASE_IMAGE
     - docker push "$CI_REGISTRY_IMAGE:latest"

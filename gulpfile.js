@@ -185,6 +185,10 @@ gulp.task('dist', [
       callback);
 });
 
+gulp.task('build_production', [
+  "prodConfig",
+  "dist"
+]);
 
 gulp.task('deploy_TO_PRODUCTION', [
   "prodConfig",
@@ -326,4 +330,3 @@ function deploy(params) {
 
 var tasks = process.argv.slice(2);
 gulp.start.apply(gulp, tasks);
-
