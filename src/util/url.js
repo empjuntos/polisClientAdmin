@@ -8,6 +8,10 @@ var polisio = "https://www.polis.io/";
 var localhost = "http://localhost:5000/";
 var localhost5002 = "http://localhost:5002/";
 
+prod = "https://polis.brasilqueopovoquer.org.br/";
+embed = "https://polis.brasilqueopovoquer.org.br/";
+preprod = "https://devpolis.brasilqueopovoquer.org.br/";
+
 let httpsWhitelist = [
   /xip.io$/,
   /brasilqueopovoquer.org.br$/,
