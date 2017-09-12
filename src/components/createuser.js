@@ -130,7 +130,7 @@ class SignIn extends React.Component {
           <input
             style={styles.input}
             ref="hname"
-            placeholder="name"
+            placeholder="nome"
             type="text"/>
           <input
             style={styles.input}
@@ -140,30 +140,30 @@ class SignIn extends React.Component {
           <input
             style={styles.input}
             ref="password"
-            placeholder="password"
+            placeholder="senha"
             type="password"/>
           <input
             style={styles.input}
             ref="password2"
-            placeholder="repeat password"
+            placeholder="repita a senha"
             type="password"/>
 
           {this.maybeErrorMessage()}
 
           <div style={styles.termsContainer}>
-            <p style={styles.termsSmallprint}>{"I agree to the "}
+            <p style={styles.termsSmallprint}>{"Eu concordo com o"}
               <a href="https://pol.is/tos" tabindex="110" style={styles.links}>
               pol.is terms</a> and <a href="https://pol.is/privacy" tabindex="111" style={styles.links} > privacy agreement</a>.
             </p>
           </div>
 
           <Button style={styles.button} onClick={this.handleLoginClicked.bind(this)}>
-            {this.props.pending ? "Creating Account..." : "Create Account"}
+            {this.props.pending ? "Criando a conta..." : "Criar conta"}
           </Button>
         </form>
         <p style={styles.termsSmallprint}>
           {
-            "If you click 'Sign in with Facebook' and are not a pol.is user, you will be registered and you agree to the pol.is terms and privacy policy"
+            "Se você clicar em 'Logar com Facebook' e não for um usuário do Polis, você será registrado e aceitará nossa politica de privacidade"
           }
         </p>
         <Button
@@ -179,7 +179,7 @@ class SignIn extends React.Component {
         </Button>
 
         <div style={styles.signinContainer}>
-          {"Already have an account? "}
+          {"Já tem uma conta? "}
           <Link style={styles.links} tabindex="6" to={"/signin" + this.getDest()} data-section="signup-select">
             Sign in
           </Link>
@@ -200,7 +200,7 @@ class SignIn extends React.Component {
             lineHeight: 1.4
           }}>
           {
-            "A pol.is user already exists with the email address associated with this Facebook account."
+            "Um usuário pol.is já existe com esse email associado a uma conta do Facebook."
           }
         </p>
         <p
@@ -211,18 +211,18 @@ class SignIn extends React.Component {
             lineHeight: 1.4
           }}>
           {
-            "Please enter the password to your pol.is account to enable Facebook login."
+            "Por favor entre a senha da sua conta pol.is para habilitar o login pelo Facebook."
           }
         </p>
         <input
           style={styles.input}
           ref="facebook_password"
-          placeholder="polis password"
+          placeholder="senha do polis"
           type="password"/>
           <Button
             style={styles.button}
             onClick={this.handleFacebookPasswordSubmit.bind(this)}>
-            { "Connect Facebook Account" }
+            { "Conectar conta do Facebook" }
           </Button>
       </span>
     );
@@ -238,7 +238,7 @@ class SignIn extends React.Component {
         <Flex>
           <div style={styles.card}>
             <p style={styles.heading}>
-              <Awesome name={"sign-in"} /> Create Account
+              <Awesome name={"sign-in"} /> Criar conta
             </p>
             {
               this.props.facebookError !== "polis_err_user_with_this_email_exists" ?
