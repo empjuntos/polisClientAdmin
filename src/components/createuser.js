@@ -151,7 +151,7 @@ class SignIn extends React.Component {
           {this.maybeErrorMessage()}
 
           <div style={styles.termsContainer}>
-            <p style={styles.termsSmallprint}>{"Eu concordo com o"}
+            <p style={styles.termsSmallprint}>{"Eu concordo com "}
               <a href="https://pol.is/tos" tabindex="110" style={styles.links}>
               pol.is terms</a> and <a href="https://pol.is/privacy" tabindex="111" style={styles.links} > privacy agreement</a>.
             </p>
