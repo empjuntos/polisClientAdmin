@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Radium from 'radium';
+import Url from '../../util/url.js';
+
 // import _ from 'lodash';
 // import flex from './framework/flex';
 // import { connect } from 'react-redux';
@@ -53,7 +55,7 @@ class Live extends React.Component {
         this.props.style
       ]}>
         <iframe
-          src={"https://pol.is/"+this.props.params.conversation_id}
+          src={Url.urlPrefix+this.props.params.conversation_id}
           style={{
             minHeight: "2000px",
             width: "100%",
