@@ -7,6 +7,7 @@ import Radium from "radium";
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
+import Url from '../../util/url.js';
 
 
 const styles = {
@@ -48,8 +49,8 @@ class ShareAndEmbed extends React.Component {
             <a
               style={{fontSize: 36, color: "black"}}
               target="blank"
-              href={"https://pol.is/" + this.props.params.conversation_id}>
-              {"pol.is/" + this.props.params.conversation_id}
+              href={Url.urlPrefix + this.props.params.conversation_id}>
+              {Url.urlPrefix + this.props.params.conversation_id}
             </a>
           </p>
         </div>
@@ -71,7 +72,7 @@ class ShareAndEmbed extends React.Component {
             {" class='polis'"}
             {" data-conversation_id='"+this.props.params.conversation_id+"'>"}
             {"</div>\n"}
-            {"<script async='true' src='https://pol.is/embed.js'></script>"}
+            {"<script async='true' src='" + Url.urlPrefix + "embed.js'></script>"}
             </Highlight>
           </div>
           <p style={{fontWeight: 300}}>
