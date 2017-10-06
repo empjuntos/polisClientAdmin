@@ -9,7 +9,7 @@ stages:
 variables:
   RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
 
-build admin:
+build:
   stage: build
   script:
     - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" $CI_REGISTRY
@@ -23,7 +23,8 @@ build admin:
     - docker push $RELEASE_IMAGE
     - docker push "$CI_REGISTRY_IMAGE:latest"
   only:
-    - /master|develop/
+    - /master/
+    - tags
   tags:
     - docker
 
@@ -31,20 +32,20 @@ deploy to production:
   stage: deploy
   image: cdrx/rancher-gitlab-deploy
   script:
-    - upgrade --environment Production --stack polis-prod --service polis-client-admin --new-image $RELEASE_IMAGE --no-finish-upgrade --debug
+    - upgrade --environment FPAbramo --stack polis-prod --service polis-client-admin --new-image $RELEASE_IMAGE --no-finish-upgrade --debug
   only:
-    - /master/
+    - tags
   environment: production
   tags:
     - docker
 
-deploy to development:
+deploy to homolog:
   stage: deploy
   image: cdrx/rancher-gitlab-deploy
   script:
-    - upgrade --environment Production --stack polis-dev --service polis-client-admin --new-image $RELEASE_IMAGE --no-finish-upgrade --debug
+    - upgrade --environment FPAbramo --stack polis-dev --service polis-client-admin --new-image $RELEASE_IMAGE --no-finish-upgrade --debug
   only:
-    - /develop/
-  environment: development
+    - /master/
+  environment: homolog
   tags:
     - docker
